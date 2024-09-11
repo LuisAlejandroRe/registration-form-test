@@ -1,6 +1,6 @@
 # Setup
 
-## Instalación
+### Instalación
 
 Versión de node: 20.9.0
 
@@ -8,25 +8,19 @@ Versión de node: 20.9.0
 npm install
 ```
 
-## Levantar server de la aplicación
+### Levantar server de la aplicación
 
 ```bash
 npm run start
 ```
 
-## Correr test
+### Correr test
 
 ```bash
 npx playwright test
 ```
 
-## Correr test
-
-```bash
-npx playwright test
-```
-
-## Mostrar reporte de tests
+### Mostrar reporte de tests
 
 ```bash
 npx playwright show-report
@@ -63,7 +57,7 @@ Este plan cubre las siguientes áreas de prueba:
    - Preparar el entorno de desarrollo para ejecutar pruebas con Playwright.
    - Asegurar que Playwright esté configurado para pruebas en Chrome, Firefox, y WebKit.
 
-2. **Casos de Prueba**
+## Casos de Prueba
 
 ### Caso de Prueba 1: Validar Campo de Nombre
 
