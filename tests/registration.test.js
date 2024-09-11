@@ -14,6 +14,24 @@ test.describe("Registration Form Tests", () => {
     await expect(nameError).toHaveText("Name is required.");
   });
 
+  test("should show error when email is missing", async ({ page }) => {
+    await page.fill('input[name="name"]', "Test User");
+    await page.fill('input[name="password"]', "Password1!");
+    await page.fill('input[name="confirmPassword"]', "Password1!");
+    await page.click('button[type="submit"]');
+    const emailError = await page.locator("#emailError");
+    await expect(emailError).toHaveText("Email is required.");
+  });
+
+  test("should show error when password is missing", async ({ page }) => {
+    await page.fill('input[name="name"]', "Test User");
+    await page.fill('input[name="email"]', "test@example.com");
+    await page.fill('input[name="confirmPassword"]', "Password1!");
+    await page.click('button[type="submit"]');
+    const passwordError = await page.locator("#passwordError");
+    await expect(passwordError).toHaveText("Password is required.");
+  });
+
   test("should show error for invalid email format", async ({ page }) => {
     await page.fill('input[name="name"]', "Test User");
     await page.fill('input[name="email"]', "invalid-email");
@@ -22,6 +40,18 @@ test.describe("Registration Form Tests", () => {
     await page.click('button[type="submit"]');
     const emailError = await page.locator("#emailError");
     await expect(emailError).toHaveText("Invalid email format.");
+  });
+
+  test("should show error for invalid password format", async ({ page }) => {
+    await page.fill('input[name="name"]', "Test User");
+    await page.fill('input[name="email"]', "test@example.com");
+    await page.fill('input[name="password"]', "password");
+    await page.fill('input[name="confirmPassword"]', "password");
+    await page.click('button[type="submit"]');
+    const passwordError = await page.locator("#passwordError");
+    await expect(passwordError).toHaveText(
+      "Password must be at least 8 characters and include uppercase, lowercase, number, and symbol."
+    );
   });
 
   test("should show error when passwords do not match", async ({ page }) => {
